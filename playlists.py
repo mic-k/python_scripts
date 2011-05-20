@@ -7,25 +7,25 @@ startdir_default = 'c:/bak/musik'
 print "\n\nCreating playlists for all directories containing mp3-files!\n"
 print "default directory:", startdir_default
 startdir = str(raw_input("input for new starting directory (or 'enter' for default): "))
-if startdir == '':
+if not startdir:
     startdir = startdir_default
 
 
-list_mp3 = []
+list_mp3 = list()
     
 for root, dirs, files in os.walk(startdir):
     
-    mp3_files = ''
+    mp3_files = str()
     for filename in files:
         if str.lower(filename[-4:]) == '.mp3':
             mp3_files += filename + "\n"
             #mp3.append("\n")
     
-    if mp3_files != '':
+    if mp3_files:
         tmp_list = [root, os.path.split(root)[1], len(mp3_files), mp3_files]
         list_mp3.append(tmp_list)
 
-if list_mp3 != []:
+if list_mp3:
     print "\n\nwriting playlists...\n\n"
 else:
     print"\n\nNothing to write!\n"
